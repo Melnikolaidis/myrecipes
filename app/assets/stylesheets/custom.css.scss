@@ -44,6 +44,7 @@ $navbar-default-bg: #7575a3;
 
 .btn-xlarge {
   background-color: #7575a3;
+  color: #fff;
 }
 
 .jumbotron p {
@@ -77,4 +78,11 @@ footer p {
 
 .colormatch a {
   color: #073B15;
+}
+
+.recipe-actions {
+  padding-top: 5px;
+  a {
+    color: #fff;
+  }
 }
