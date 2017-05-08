@@ -5,6 +5,8 @@ class RecipesTest < ActionDispatch::IntegrationTest
   def setup
     @chef = Chef.create!(chefname: "Meletis", email: "melnikolaidis@hotmail.com",
                   password: "password", password_confirmation: "password")
+    @admin_user = Chef.create!(chefname: "john1", email: "john1@example.com",
+                    password: "password", password_confirmation: "password", admin: true)              
     @recipe = Recipe.create(name: "Vegetable Saute", description: "Great Vegetable Saute add vegetable and oil", chef: @chef)
     @recipe2 = @chef.recipes.build(name: "Chicken Saute", description: "Great chicke dish!")
     @recipe2.save
@@ -23,7 +25,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
   
   test "should get recipes show" do
-    sign_in_as(@chef, "password")
+    sign_in_as(@admin_user, "password")
     get recipe_path(@recipe)
     assert_template 'recipes/show'
     assert_match @recipe.name, response.body
